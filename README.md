@@ -40,7 +40,7 @@ module.exports  = {
   ]
 }
 ```
-### Custom routes
+### Custom routes {#custom-routes}
 
 Likely, for some of the collections that will get created you will want to have custom routes set up.
 
