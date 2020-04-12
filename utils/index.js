@@ -44,7 +44,7 @@ const getParser = (field) => {
       // if the only element of the array is of type 'preformatted'
       // or is a header then render as text, else render as HTML instead
       if (Array.isArray(field)) {
-        if (field.length === 1 && (field[0].type === 'preformatted' || HEADERS[field[0].type)) {
+        if (field.length === 1 && (field[0].type === 'preformatted' || HEADERS[field[0].type])) {
           return PARSER_TYPES.TEXT
         }
 
