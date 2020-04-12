@@ -89,13 +89,13 @@ const documentParser = ({
     const parserType = getParser(data[key])
 
     switch (parserType) {
-      case "none":
+      case PARSER_TYPES.NONE:
         parsedData[key] = data[key]
         break
-      case "text":
-        parsedData[key] = marked(DOM.RichText.asText(data[key]))
+      case PARSER_TYPES.TEXT:
+        parsedData[key] = marked(data[key][0].text)
         break
-      case "html":
+      case PARSER_TYPES.HTML:
         parsedData[key] = DOM.RichText.asHtml(data[key])
         break
       default:
