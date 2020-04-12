@@ -1,7 +1,9 @@
 {
   "name": "@ilrock/gridsome-source-prismic",
-  "version": "1.0.0",
+  "version": "0.6.0",
   "description": "Simple plugin to convert your Prismic documents into Gridsome GraphQL collections",
+  "homepage": "https://github.com/ilrock/gridsome-source-prismic",
+  "repository": "https://github.com/ilrock/gridsome-source-prismic",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
