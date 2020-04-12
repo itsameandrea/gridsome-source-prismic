@@ -9,5 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ilrock",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "marked": "^0.8.2",
+    "prismic-dom": "^2.1.0",
+    "prismic-javascript": "^2.7.1"
+  }
 }
