@@ -1,6 +1,6 @@
 {
   "name": "@ilrock/gridsome-source-prismic",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple plugin to convert your Prismic documents into Gridsome GraphQL collections",
   "homepage": "https://github.com/ilrock/gridsome-source-prismic",
   "repository": "https://github.com/ilrock/gridsome-source-prismic",
