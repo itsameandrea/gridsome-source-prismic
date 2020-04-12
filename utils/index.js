@@ -19,6 +19,7 @@ const PARSER_TYPES = {
   NONE: 'none',
   TEXT: 'text',
   HTML: 'html',
+  MARKDOWN: 'markdown',
   NOT_SUPPORTED: 'not_supported'
 }
 
@@ -41,11 +42,17 @@ const getParser = (field) => {
 
     if (typeof field === 'object') {
       // the only array types are headers and rich texts
-      // if the only element of the array is of type 'preformatted'
-      // or is a header then render as text, else render as HTML instead
+      // if there's just one item in the array, then we have
+      // either markdown text or a header
       if (Array.isArray(field)) {
-        if (field.length === 1 && (field[0].type === 'preformatted' || HEADERS[field[0].type])) {
-          return PARSER_TYPES.TEXT
+        if (field.length === 1) {
+          if (field[0].type === 'preformatted') {
+            return PARSER_TYPES.MARKDOWN
+          }
+
+          if (HEADERS[field[0].type]) {
+            return PARSER_TYPES.TEXT
+          }
         }
 
         return PARSER_TYPES.HTML
@@ -74,13 +81,14 @@ const documentParser = ({
   data,
 }) => {
   const parsedDocument = {
-    id,
     type,
     tags,
     first_publication_date,
     last_publication_date,
     slugs,
-    lang,
+    id: slugs[0],
+    slug: slugs[0],
+    lang
   }
 
   const parsedData = {}
@@ -92,8 +100,11 @@ const documentParser = ({
       case PARSER_TYPES.NONE:
         parsedData[key] = data[key]
         break
-      case PARSER_TYPES.TEXT:
+      case PARSER_TYPES.MARKDOWN:
         parsedData[key] = marked(data[key][0].text)
+        break
+      case PARSER_TYPES.TEXT:
+        parsedData[key] = DOM.RichText.asText(data[key])
         break
       case PARSER_TYPES.HTML:
         parsedData[key] = DOM.RichText.asHtml(data[key])
