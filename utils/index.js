@@ -22,6 +22,16 @@ const PARSER_TYPES = {
   NOT_SUPPORTED: 'not_supported'
 }
 
+// all header types
+const HEADERS = {
+  heading1: 'heading1',
+  heading2: 'heading2',
+  heading3: 'heading3',
+  heading4: 'heading4',
+  heading5: 'heading5',
+  heading6: 'heading6'
+}
+
 // function to get the parser type for each field
 const getParser = (field) => {
   if (field) {
@@ -31,10 +41,10 @@ const getParser = (field) => {
 
     if (typeof field === 'object') {
       // the only array types are headers and rich texts
-      // if the only element of the array is of type 'pre' then
-      // render text as it's markdown, else render HTML instead
+      // if the only element of the array is of type 'preformatted'
+      // or is a header then render as text, else render as HTML instead
       if (Array.isArray(field)) {
-        if (field.length === 1 && field[0].type === 'preformatted') {
+        if (field.length === 1 && (field[0].type === 'preformatted' || HEADERS[field[0].type)) {
           return PARSER_TYPES.TEXT
         }
 
