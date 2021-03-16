@@ -19,6 +19,7 @@ const PARSER_TYPES = {
   NONE: 'none',
   TEXT: 'text',
   HTML: 'html',
+  SLICE: "slice",
   MARKDOWN: 'markdown',
   NOT_SUPPORTED: 'not_supported'
 }
@@ -53,6 +54,10 @@ const getParser = (field) => {
           if (HEADERS[field[0].type]) {
             return PARSER_TYPES.TEXT
           }
+        }
+
+        if (field[0].slice_type) {
+          return PARSER_TYPES.SLICE;
         }
 
         return PARSER_TYPES.HTML
@@ -106,6 +111,9 @@ const documentParser = ({
       case PARSER_TYPES.TEXT:
         parsedData[key] = DOM.RichText.asText(data[key])
         break
+      case PARSER_TYPES.SLICE:
+        parsedData[key] = JSON.stringify(data[key]);
+        break;
       case PARSER_TYPES.HTML:
         parsedData[key] = DOM.RichText.asHtml(data[key])
         break
