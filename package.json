@@ -11,7 +11,7 @@
   "author": "ilrock",
   "license": "ISC",
   "dependencies": {
-    "marked": "^0.8.2",
+    "marked": "^4.0.10",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^2.7.1"
   }
